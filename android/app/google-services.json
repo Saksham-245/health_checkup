@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "426574762730",
+    "project_id": "health-check-c9e35",
+    "storage_bucket": "health-check-c9e35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426574762730:android:4a3d05aa945e7e9fecbd93",
+        "android_client_info": {
+          "package_name": "com.shubhamrawat.healthcheck"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQPJfoSAPoUJoIPpnkDiTearBJtkRmw1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
