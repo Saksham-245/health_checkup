@@ -74,9 +74,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.health_checkup"
+    namespace "com.shubhamrawat.healthcheck"
     defaultConfig {
-        applicationId "com.health_checkup"
+        applicationId "com.shubhamrawat.healthcheck"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

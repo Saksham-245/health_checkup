@@ -1,4 +1,4 @@
-rootProject.name = 'health_checkup'
+rootProject.name = 'Health Check'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
 includeBuild('../node_modules/@react-native/gradle-plugin')

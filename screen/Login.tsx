@@ -1,0 +1,188 @@
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Dimensions,
+  Keyboard,
+} from 'react-native';
+import React, {useCallback, useMemo, useRef, useState} from 'react';
+import AppIntroSlider from 'react-native-app-intro-slider';
+import BottomSheet, {
+  BottomSheetModal,
+  BottomSheetView,
+} from '@gorhom/bottom-sheet';
+import {Button, TextInput} from 'react-native-paper';
+import {
+  getCountryByCode,
+  PhoneNumberInput,
+} from 'react-native-paper-phone-number-input';
+
+const {width, height} = Dimensions.get('window');
+
+const slides = [
+  {
+    key: 1,
+    title: 'Title 1',
+    text: 'Description.\nSay something cool',
+    image: require('../assets/images/test.jpg'),
+    backgroundColor: '#59b2ab',
+  },
+  {
+    key: 2,
+    title: 'Title 2',
+    text: 'Other cool stuff',
+    image: require('../assets/images/lab.jpg'),
+    backgroundColor: '#febe29',
+  },
+];
+
+const RenderItem = ({item}) => {
+  return (
+    <View style={{...styles.slide, backgroundColor: item.backgroundColor}}>
+      <Image style={styles.image} source={item.image} />
+      <View style={styles.view}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.text}>{item.text}</Text>
+      </View>
+    </View>
+  );
+};
+
+export default function Login() {
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const [showOtpInput, setShowOtpInput] = useState(false);
+  const [phoneNumber, setphoneNumber] = useState('');
+  const [otp, setOtp] = useState(['', '', '', '']);
+  const [countryCode, setCountryCode] = useState<string>('IN'); // Default country code
+  const {name, flag, dialCode} = getCountryByCode(countryCode); // Get country details
+
+  // callbacks
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
+
+  const handleOtpChange = (index, value) => {
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
+  };
+
+  return (
+    <View style={{height: '100%'}}>
+      <AppIntroSlider
+        data={slides}
+        renderItem={({item}) => <RenderItem item={item} />}
+        showDoneButton={false}
+        showNextButton={false}
+        bottomButton={true}
+      />
+      <BottomSheet
+        ref={bottomSheetModalRef}
+        index={1}
+        handleComponent={null}
+        snapPoints={['30%', '30%']}
+        onChange={() => null}>
+        <BottomSheetView style={styles.bottomSheet}>
+          {!showOtpInput ? (
+            <>
+              <TextInput
+                value={phoneNumber}
+                style={styles.phoneInput}
+                keyboardType="phone-pad"
+                label="Phone Number"
+                mode="outlined"
+              />
+              <Button
+                mode="contained"
+                style={{marginTop: 20}}
+                onPress={() => setShowOtpInput(true)}>
+                <Text>Send OTP</Text>
+              </Button>
+            </>
+          ) : (
+            <>
+              <View style={styles.otpContainer}>
+                {otp.map((digit, index) => (
+                  <TextInput
+                    key={index}
+                    value={digit}
+                    onChangeText={value => handleOtpChange(index, value)}
+                    style={styles.otpInput}
+                    keyboardType="number-pad"
+                    textAlign="left"
+                    maxLength={1}
+                  />
+                ))}
+              </View>
+              <Button mode="contained" style={{marginTop: 30}}>
+                Verify OTP
+              </Button>
+            </>
+          )}
+        </BottomSheetView>
+      </BottomSheet>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  slide: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    position: 'absolute',
+    color: 'white',
+    fontSize: 24,
+    top: '10%',
+    textAlign: 'center',
+    width: '100%',
+  },
+  view: {
+    width: '50%',
+  },
+  text: {
+    position: 'absolute',
+    color: 'white',
+    fontSize: 20,
+    bottom: '10%',
+    textAlign: 'center',
+  },
+  image: {
+    width,
+    height,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  },
+  bottomSheet: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    width: '100%',
+    paddingHorizontal: 10,
+    paddingTop: 20, // Adjust this value as needed
+  },
+  phoneInput: {
+    width: '100%',
+  },
+  bottomSheetText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+
+  otpContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '80%',
+  },
+  otpInput: {
+    width: 50,
+    height: 50,
+    borderWidth: 1,
+    borderRadius: 5,
+    textAlign: 'center',
+  },
+});

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "health_checkup.app"
-               BlueprintName = "health_checkup"
-               ReferencedContainer = "container:health_checkup.xcodeproj">
+               BuildableName = "HealthCheck.app"
+               BlueprintName = "HealthCheck"
+               ReferencedContainer = "container:HealthCheck.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "health_checkupTests.xctest"
-               BlueprintName = "health_checkupTests"
-               ReferencedContainer = "container:health_checkup.xcodeproj">
+               BuildableName = "HealthCheckTests.xctest"
+               BlueprintName = "HealthCheckTests"
+               ReferencedContainer = "container:HealthCheck.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "health_checkup.app"
-            BlueprintName = "health_checkup"
-            ReferencedContainer = "container:health_checkup.xcodeproj">
+            BuildableName = "HealthCheck.app"
+            BlueprintName = "HealthCheck"
+            ReferencedContainer = "container:HealthCheck.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "health_checkup.app"
-            BlueprintName = "health_checkup"
-            ReferencedContainer = "container:health_checkup.xcodeproj">
+            BuildableName = "HealthCheck.app"
+            BlueprintName = "HealthCheck"
+            ReferencedContainer = "container:HealthCheck.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

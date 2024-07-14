@@ -1,4 +1,4 @@
-package com.health_checkup
+package com.shubhamrawat.healthcheck
 
 import android.app.Application
 import com.facebook.react.PackageList
