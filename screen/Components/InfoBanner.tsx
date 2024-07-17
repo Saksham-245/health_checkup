@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     margin: 5,
-    marginVertical: 10,
+    marginVertical: 30,
     padding: 10,
   },
   infoItem: {
@@ -38,11 +38,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
+    marginTop: 4,
     color: '#000',
   },
   subtitle: {
     fontSize: 12,
-    color: '#888',
+    color: '#000',
     fontWeight: 'bold',
   },
 });
