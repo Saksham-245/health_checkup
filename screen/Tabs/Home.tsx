@@ -3,6 +3,7 @@ import {View, Image, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import LocationButton from '../Components/LocationButton';
 import SearchBar from '../Components/SearchBar';
 import InfoBanner from '../Components/InfoBanner';
+import BannerSlider from '../Components/HomeBannerSlider';
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
           <SearchBar />
         </View>
         <InfoBanner />
+        <BannerSlider />
       </ScrollView>
     </SafeAreaView>
   );
