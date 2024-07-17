@@ -30,7 +30,14 @@ export default function App() {
               />
               <Stack.Screen name="login" component={Login} />
               <Stack.Screen name="tabs" component={Tabs} />
-              <Stack.Screen name="searchScreen" component={SearchScreen} />
+              <Stack.Screen
+                name="searchScreen"
+                component={SearchScreen}
+                options={{
+                  headerShown: true,
+                  headerTitle: 'Search',
+                }}
+              />
             </Stack.Navigator>
           </NavigationContainer>
         </GestureHandlerRootView>

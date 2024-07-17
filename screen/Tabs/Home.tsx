@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import LocationButton from '../Components/LocationButton';
 import SearchBar from '../Components/SearchBar';
+import InfoBanner from '../Components/InfoBanner';
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
           source={require('../../assets/images/landing-screen.png')}
         />
         <SearchBar />
+        <InfoBanner />
       </ScrollView>
     </SafeAreaView>
   );

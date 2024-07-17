@@ -14,6 +14,13 @@ const Tabs = () => {
     <Tab.Navigator
       screenOptions={({route}) => ({
         headerShown: false,
+        tabBarStyle: {
+          borderTopLeftRadius: 30, // adjust the radius as needed
+          borderTopRightRadius: 30,
+          height: 50,
+          overflow: 'hidden',
+          // backgroundColor: "white", // or any other background color
+        },
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
 

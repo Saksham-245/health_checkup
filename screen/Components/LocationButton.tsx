@@ -41,7 +41,7 @@ const LocationButton = () => {
         onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
-            <Text style={styles.modalTitle}>Select Location</Text>
+            <Text style={styles.modalTitle}>Select City</Text>
             <FlatList
               data={locations}
               keyExtractor={item => item}
@@ -112,8 +112,6 @@ const styles = StyleSheet.create({
   },
   modalItem: {
     padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
     width: '100%',
   },
   modalItemText: {
