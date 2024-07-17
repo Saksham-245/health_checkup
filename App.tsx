@@ -6,6 +6,9 @@ import Splash from './screen/Splash';
 import Login from './screen/Login';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {PaperProvider} from 'react-native-paper';
+import Home from './screen/Tabs/Home';
+import Tabs from './screen/Tabs';
+import SearchScreen from './screen/Tabs/SearchScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +29,8 @@ export default function App() {
                 }}
               />
               <Stack.Screen name="login" component={Login} />
+              <Stack.Screen name="tabs" component={Tabs} />
+              <Stack.Screen name="searchScreen" component={SearchScreen} />
             </Stack.Navigator>
           </NavigationContainer>
         </GestureHandlerRootView>

@@ -17,7 +17,7 @@ export default function Splash() {
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('login'); // Ensure 'Login' is the correct route name
+      navigation.replace('tabs'); // Ensure 'Login' is the correct route name
     }, 3000);
   }, [navigation]);
 
