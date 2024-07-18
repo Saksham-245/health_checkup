@@ -1,9 +1,20 @@
 import React from 'react';
-import {View, Image, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {
+  View,
+  Image,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  StyleSheet,
+} from 'react-native';
 import LocationButton from '../Components/LocationButton';
 import SearchBar from '../Components/SearchBar';
 import InfoBanner from '../Components/InfoBanner';
 import BannerSlider from '../Components/HomeBannerSlider';
+import homeBannerData from '../../json/homeBannerSlider.json';
+import CheckUpBannerSlider from '../Components/CheckUpBannerSlider';
+import CheckUpBannerData from '../../json/checkupBannerSlider.json';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Home = () => {
   return (
@@ -18,7 +29,9 @@ const Home = () => {
           <SearchBar />
         </View>
         <InfoBanner />
-        <BannerSlider />
+        <BannerSlider data={homeBannerData} />
+        <CheckUpBannerSlider data={CheckUpBannerData} />
+        <Text>hi</Text>
       </ScrollView>
     </SafeAreaView>
   );

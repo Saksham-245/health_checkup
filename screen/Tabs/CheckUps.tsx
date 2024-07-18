@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import LocationButton from '../Components/LocationButton';
 import SearchBar from '../Components/SearchBar';
+import CheckUpBannerSlider from '../Components/CheckUpBannerSlider';
+import CheckUpBannerData from '../../json/checkupBannerSlider.json';
 
 const CheckUps = () => {
   return (
@@ -18,6 +20,7 @@ const CheckUps = () => {
           <LocationButton />
           <SearchBar />
         </View>
+        <CheckUpBannerSlider data={CheckUpBannerData} />
       </ScrollView>
     </SafeAreaView>
   );

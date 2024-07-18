@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Carousel, {Pagination} from 'react-native-reanimated-carousel';
-
+import Carousel from 'react-native-reanimated-carousel';
+import Images from './Images.tsx';
 const {width} = Dimensions.get('window');
 
 interface Banner {
@@ -23,37 +23,38 @@ interface Banner {
   buttonAction: () => void;
 }
 
-const banners: Banner[] = [
-  {
-    id: '1',
-    image: require('../../assets/images/Family.jpg'),
-    title: 'Add a family member',
-    subtitle: 'get 30% off',
-    code: 'Use Code: FAMILY',
-    buttonText: 'Order Now',
-    gradient: ['#D4D3DD', '#D4D3DD'],
-    buttonAction: () => alert('Order Now Pressed'),
-  },
-  {
-    id: '2',
-    image: require('../../assets/images/Discount.jpg'),
-    title: 'Save Money',
-    subtitle: 'Get Discount',
-    code: 'Use Code: DISCOUNT',
-    buttonText: 'Click Here',
-    gradient: ['#DBD5A4', '#BBD2C5'],
-    buttonAction: () => alert('Click Here Pressed'),
-  },
-  // Add more banner objects as needed
-];
+// const banners: Banner[] = [
+//   {
+//     id: '1',
+//     image: require('../../assets/images/Family.jpg'),
+//     title: 'Add a family member',
+//     subtitle: 'get 30% off',
+//     code: 'Use Code: FAMILY',
+//     buttonText: 'Order Now',
+//     gradient: ['#D4D3DD', '#D4D3DD'],
+//     buttonAction: () => alert('Order Now Pressed'),
+//   },
+//   {
+//     id: '2',
+//     image: require('../../assets/images/Discount.jpg'),
+//     title: 'Save Money',
+//     subtitle: 'Get Discount',
+//     code: 'Use Code: DISCOUNT',
+//     buttonText: 'Click Here',
+//     gradient: ['#DBD5A4', '#BBD2C5'],
+//     buttonAction: () => alert('Click Here Pressed'),
+//   },
+//   // Add more banner objects as needed
+// ];
 
-const BannerSlider = () => {
+const BannerSlider = prop => {
+  const banners = prop.data;
   const renderItem = ({item}: {item: Banner}) => (
     <View>
       <LinearGradient
         colors={[item.gradient[0], item.gradient[1]]}
         style={styles.slide}>
-        <Image source={item.image} style={styles.image} />
+        <Image source={Images[item.image]} style={styles.image} />
         <View style={styles.textContainer}>
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.subtitle}>{item.subtitle}</Text>
