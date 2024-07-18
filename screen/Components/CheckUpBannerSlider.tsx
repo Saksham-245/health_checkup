@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Carousel from 'react-native-reanimated-carousel';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const {width} = Dimensions.get('window');
 
@@ -52,10 +53,33 @@ const CheckUpBannerSlider = (prop: {data: any}) => {
             </View>
           </View>
         </LinearGradient>
-        <View style={styles.textContainer}>
-          <Text>{item.parameter}</Text>
-
-          <Text>{item.reportsTime}</Text>
+        <View style={{padding: 6}}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <View style={{flexDirection: 'row', paddingHorizontal: 15}}>
+              <FontAwesome5
+                style={{padding: 5}}
+                name="dna"
+                size={30}></FontAwesome5>
+              <View style={{padding: 1}}>
+                <Text style={{fontWeight: 'bold', color: 'black'}}>
+                  {item.parameter + ' parameters'}
+                </Text>
+                <Text>Included</Text>
+              </View>
+            </View>
+            <View style={{flexDirection: 'row', paddingHorizontal: 15}}>
+              <FontAwesome5
+                style={{padding: 5}}
+                name="file-medical-alt"
+                size={30}></FontAwesome5>
+              <View>
+                <Text>Reports within</Text>
+                <Text style={{fontWeight: 'bold', color: 'black'}}>
+                  {item.reportsTime + ' Hours'}
+                </Text>
+              </View>
+            </View>
+          </View>
           <TouchableOpacity onPress={item.buttonAction} style={styles.button}>
             <Text style={styles.buttonText}>Add to Cart</Text>
           </TouchableOpacity>
@@ -105,12 +129,6 @@ const styles = StyleSheet.create({
   titleText: {
     width: '50%',
   },
-
-  textContainer: {
-    alignItems: 'center',
-    width: '60%',
-    margin: 10,
-  },
   title: {
     fontSize: 20,
     color: '#FFF',
@@ -149,11 +167,19 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 80,
   },
+  parameterContainer: {
+    flexDirection: 'row',
+  },
+  reportTimeContainer: {
+    flexDirection: 'row',
+  },
   button: {
     backgroundColor: '#00f',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
+    marginHorizontal: 5,
+    width: '45%',
   },
   buttonText: {
     color: '#fff',
