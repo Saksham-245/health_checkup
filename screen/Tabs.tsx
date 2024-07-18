@@ -19,6 +19,7 @@ const Tabs = () => {
           borderTopRightRadius: 30,
           height: 50,
           overflow: 'hidden',
+
           // backgroundColor: "white", // or any other background color
         },
         tabBarIcon: ({focused, color, size}) => {

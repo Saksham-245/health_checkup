@@ -47,7 +47,7 @@ const banners: Banner[] = [
   // Add more banner objects as needed
 ];
 
-const BannerSlider: React.FC = () => {
+const BannerSlider = () => {
   const renderItem = ({item}: {item: Banner}) => (
     <View>
       <LinearGradient
@@ -70,6 +70,7 @@ const BannerSlider: React.FC = () => {
     <Carousel
       loop
       width={width}
+      mode="parallax"
       height={width / 2}
       autoPlay={true}
       autoPlayInterval={2000}
