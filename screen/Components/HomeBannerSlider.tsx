@@ -19,6 +19,7 @@ interface Banner {
   subtitle: string;
   code: string;
   buttonText: string;
+  gradient: any;
   buttonAction: () => void;
 }
 
@@ -30,6 +31,7 @@ const banners: Banner[] = [
     subtitle: 'get 30% off',
     code: 'Use Code: FAMILY',
     buttonText: 'Order Now',
+    gradient: ['#D4D3DD', '#D4D3DD'],
     buttonAction: () => alert('Order Now Pressed'),
   },
   {
@@ -39,6 +41,7 @@ const banners: Banner[] = [
     subtitle: 'Get Discount',
     code: 'Use Code: DISCOUNT',
     buttonText: 'Click Here',
+    gradient: ['#DBD5A4', '#BBD2C5'],
     buttonAction: () => alert('Click Here Pressed'),
   },
   // Add more banner objects as needed
@@ -46,16 +49,20 @@ const banners: Banner[] = [
 
 const BannerSlider: React.FC = () => {
   const renderItem = ({item}: {item: Banner}) => (
-    <View style={styles.slide}>
-      <Image source={item.image} style={styles.image} />
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.subtitle}>{item.subtitle}</Text>
-        <Text style={styles.code}>{item.code}</Text>
-        <TouchableOpacity onPress={item.buttonAction} style={styles.button}>
-          <Text style={styles.buttonText}>{item.buttonText}</Text>
-        </TouchableOpacity>
-      </View>
+    <View>
+      <LinearGradient
+        colors={[item.gradient[0], item.gradient[1]]}
+        style={styles.slide}>
+        <Image source={item.image} style={styles.image} />
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.subtitle}>{item.subtitle}</Text>
+          <Text style={styles.code}>{item.code}</Text>
+          <TouchableOpacity onPress={item.buttonAction} style={styles.button}>
+            <Text style={styles.buttonText}>{item.buttonText}</Text>
+          </TouchableOpacity>
+        </View>
+      </LinearGradient>
     </View>
   );
 
@@ -65,6 +72,7 @@ const BannerSlider: React.FC = () => {
       width={width}
       height={width / 2}
       autoPlay={true}
+      autoPlayInterval={2000}
       data={banners}
       scrollAnimationDuration={1000}
       renderItem={renderItem}
@@ -76,7 +84,7 @@ const styles = StyleSheet.create({
   slide: {
     display: 'flex',
     margin: 'auto',
-    width: '95%',
+    width: '90%',
     justifyContent: 'center',
     flexDirection: 'row',
     backgroundColor: 'orange',
@@ -86,17 +94,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 5,
     elevation: 5,
-    padding: 10,
+    padding: 1,
     marginBottom: 20,
   },
   image: {
-    width: '45%',
+    width: '40%',
     height: 150,
     borderRadius: 10,
   },
   textContainer: {
     alignItems: 'center',
-    width: '45%',
+    width: '60%',
     margin: 10,
   },
   title: {
