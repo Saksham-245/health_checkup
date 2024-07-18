@@ -33,22 +33,28 @@ const CheckUpBannerSlider = (prop: {data: any}) => {
           <View style={styles.titleText}>
             <Text style={styles.title}>{item.title}</Text>
           </View>
-          <View>
-            <Text style={styles.subtitle}>₹{item.markedPrice}</Text>
-            <Text style={styles.subtitle}>₹{item.sellingPrice}</Text>
-            <Text style={styles.subtitle}>
-              {Math.floor(
-                ((item.markedPrice - item.sellingPrice) * 100) /
-                  item.markedPrice,
-              )}
-              %off
-            </Text>
+          <View style={styles.priceContainer}>
+            <View style={styles.price}>
+              <Text style={(styles.subtitle, styles.markedPrice)}>
+                ₹{item.markedPrice}
+              </Text>
+              <Text style={styles.subtitle}>₹{item.sellingPrice}</Text>
+            </View>
+            <View style={styles.discountPercentage}>
+              <Text style={styles.subtitle}>
+                {Math.floor(
+                  ((item.markedPrice - item.sellingPrice) * 100) /
+                    item.markedPrice,
+                )}
+                %off
+              </Text>
+            </View>
           </View>
         </LinearGradient>
         <View style={styles.textContainer}>
-          <Text style={styles.code}>{item.parameter}</Text>
+          <Text>{item.parameter}</Text>
 
-          <Text style={styles.code}>{item.reportsTime}</Text>
+          <Text>{item.reportsTime}</Text>
           <TouchableOpacity onPress={item.buttonAction} style={styles.button}>
             <Text style={styles.buttonText}>Add to Cart</Text>
           </TouchableOpacity>
@@ -110,14 +116,32 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   subtitle: {
-    fontSize: 14,
-    color: '#000',
+    fontSize: 20,
+    color: '#FFF',
   },
-  code: {
-    fontSize: 16,
-    color: '#888',
-    fontWeight: 'bold',
-    marginVertical: 10,
+  price: {
+    flexDirection: 'row',
+    padding: 5,
+    marginLeft: '20%',
+    justifyContent: 'space-between',
+  },
+  priceContainer: {
+    width: '50%',
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  markedPrice: {
+    textDecorationLine: 'line-through',
+    fontSize: 18,
+    color: '#FFF',
+  },
+  discountPercentage: {
+    justifyContent: 'flex-end',
+    marginLeft: '30%',
+    backgroundColor: 'orange',
+    padding: 5,
+    borderRadius: 10,
+    width: 80,
   },
   button: {
     backgroundColor: '#00f',
