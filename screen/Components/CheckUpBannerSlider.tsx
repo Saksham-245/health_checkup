@@ -34,6 +34,7 @@ const CheckUpBannerSlider = (prop: {data: any}) => {
             <Text style={styles.title}>{item.title}</Text>
           </View>
           <View style={styles.priceContainer}>
+            <Text style={styles.tag}>CHECKUP</Text>
             <View style={styles.price}>
               <Text style={(styles.subtitle, styles.markedPrice)}>
                 ₹{item.markedPrice}
@@ -115,6 +116,11 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontWeight: 'bold',
   },
+  tag: {
+    fontSize: 18,
+    fontWeight: '900',
+    marginLeft: '40%',
+  },
   subtitle: {
     fontSize: 20,
     color: '#FFF',
@@ -137,7 +143,7 @@ const styles = StyleSheet.create({
   },
   discountPercentage: {
     justifyContent: 'flex-end',
-    marginLeft: '30%',
+    marginLeft: '50%',
     backgroundColor: 'orange',
     padding: 5,
     borderRadius: 10,
