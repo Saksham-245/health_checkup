@@ -23,31 +23,7 @@ interface Banner {
   buttonAction: () => void;
 }
 
-// const banners: Banner[] = [
-//   {
-//     id: '1',
-//     image: require('../../assets/images/Family.jpg'),
-//     title: 'Add a family member',
-//     subtitle: 'get 30% off',
-//     code: 'Use Code: FAMILY',
-//     buttonText: 'Order Now',
-//     gradient: ['#D4D3DD', '#D4D3DD'],
-//     buttonAction: () => alert('Order Now Pressed'),
-//   },
-//   {
-//     id: '2',
-//     image: require('../../assets/images/Discount.jpg'),
-//     title: 'Save Money',
-//     subtitle: 'Get Discount',
-//     code: 'Use Code: DISCOUNT',
-//     buttonText: 'Click Here',
-//     gradient: ['#DBD5A4', '#BBD2C5'],
-//     buttonAction: () => alert('Click Here Pressed'),
-//   },
-//   // Add more banner objects as needed
-// ];
-
-const BannerSlider = prop => {
+const BannerSlider = (prop: {data: any}) => {
   const banners = prop.data;
   const renderItem = ({item}: {item: Banner}) => (
     <View>
@@ -78,6 +54,10 @@ const BannerSlider = prop => {
       data={banners}
       scrollAnimationDuration={1000}
       renderItem={renderItem}
+      panGestureHandlerProps={{
+        activeOffsetX: [-10, 10], // Adjust these values as needed
+        failOffsetY: [-10, 10],
+      }}
     />
   );
 };

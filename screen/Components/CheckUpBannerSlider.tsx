@@ -99,6 +99,10 @@ const CheckUpBannerSlider = (prop: {data: any}) => {
       data={banners}
       //   scrollAnimationDuration={1000}
       renderItem={renderItem}
+      panGestureHandlerProps={{
+        activeOffsetX: [-10, 10], // Adjust these values as needed
+        failOffsetY: [-10, 10],
+      }}
     />
   );
 };
