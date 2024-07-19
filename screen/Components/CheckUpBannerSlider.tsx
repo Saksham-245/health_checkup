@@ -1,14 +1,14 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Carousel from 'react-native-reanimated-carousel';
+import { useSharedValue } from 'react-native-reanimated';
+import Carousel, { ICarouselInstance, Pagination } from 'react-native-reanimated-carousel';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const {width} = Dimensions.get('window');
@@ -25,6 +25,19 @@ interface Banner {
 
 const CheckUpBannerSlider = (prop: {data: any}) => {
   const banners = prop.data;
+  const ref = React.useRef<ICarouselInstance>(null);
+  const progress = useSharedValue<number>(0);
+
+  const onPressPagination = (index: number) => {
+    ref.current?.scrollTo({
+      /**
+       * Calculate the difference between the current index and the target index
+       * to ensure that the carousel scrolls to the nearest index
+       */
+      count: index - progress.value,
+      animated: true,
+    });
+  };
   const renderItem = ({item}: {item: Banner}) => (
     <View>
       <View style={styles.slide}>
@@ -89,17 +102,27 @@ const CheckUpBannerSlider = (prop: {data: any}) => {
   );
 
   return (
-    <Carousel
-      loop
-      width={width}
-      mode="parallax"
-      height={width / 1.5}
-      //   autoPlay={true}
-      //   autoPlayInterval={2000}
-      data={banners}
-      //   scrollAnimationDuration={1000}
-      renderItem={renderItem}
-    />
+    <View style={{paddingBottom: 25}}>
+      <Carousel
+        loop
+        ref={ref}
+        width={width}
+        height={width / 1.5}
+        data={banners}
+        pagingEnabled={true}
+        autoPlay={true}
+        scrollAnimationDuration={1000}
+        onProgressChange={progress}
+        renderItem={renderItem}
+      />
+      <Pagination.Basic
+        progress={progress}
+        data={banners}
+        dotStyle={{ backgroundColor: "rgba(0,0,0,0.2)", borderRadius: 50 }}
+        containerStyle={{ gap: 5 }}
+        onPress={onPressPagination}
+      />
+    </View>
   );
 };
 

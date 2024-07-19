@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -8,9 +8,12 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Carousel from 'react-native-reanimated-carousel';
-import Images from './Images.tsx';
-const {width} = Dimensions.get('window');
+import Images from './Images';
+import Carousel, { ICarouselInstance, Pagination } from 'react-native-reanimated-carousel';
+import { useSharedValue } from 'react-native-reanimated';
+
+
+const { width } = Dimensions.get('window');
 
 interface Banner {
   id: string;
@@ -23,33 +26,31 @@ interface Banner {
   buttonAction: () => void;
 }
 
-// const banners: Banner[] = [
-//   {
-//     id: '1',
-//     image: require('../../assets/images/Family.jpg'),
-//     title: 'Add a family member',
-//     subtitle: 'get 30% off',
-//     code: 'Use Code: FAMILY',
-//     buttonText: 'Order Now',
-//     gradient: ['#D4D3DD', '#D4D3DD'],
-//     buttonAction: () => alert('Order Now Pressed'),
-//   },
-//   {
-//     id: '2',
-//     image: require('../../assets/images/Discount.jpg'),
-//     title: 'Save Money',
-//     subtitle: 'Get Discount',
-//     code: 'Use Code: DISCOUNT',
-//     buttonText: 'Click Here',
-//     gradient: ['#DBD5A4', '#BBD2C5'],
-//     buttonAction: () => alert('Click Here Pressed'),
-//   },
-//   // Add more banner objects as needed
-// ];
-
-const BannerSlider = prop => {
+const BannerSlider = (prop: any) => {
   const banners = prop.data;
-  const renderItem = ({item}: {item: Banner}) => (
+  const ref = React.useRef<ICarouselInstance>(null);
+  const progress = useSharedValue<number>(0);
+  const colors = [
+    "#26292E",
+    "#899F9C",
+    "#B3C680",
+    "#5C6265",
+    "#F5D399",
+    "#F1F1F1",
+  ];
+
+  const onPressPagination = (index: number) => {
+    ref.current?.scrollTo({
+      /**
+       * Calculate the difference between the current index and the target index
+       * to ensure that the carousel scrolls to the nearest index
+       */
+      count: index - progress.value,
+      animated: true,
+    });
+  };
+
+  const renderItem = ({ item }: { item: Banner }) => (
     <View>
       <LinearGradient
         colors={[item.gradient[0], item.gradient[1]]}
@@ -68,17 +69,27 @@ const BannerSlider = prop => {
   );
 
   return (
-    <Carousel
-      loop
-      width={width}
-      mode="parallax"
-      height={width / 2}
-      autoPlay={true}
-      autoPlayInterval={2000}
-      data={banners}
-      scrollAnimationDuration={1000}
-      renderItem={renderItem}
-    />
+    <View>
+      <Carousel
+        loop
+        ref={ref}
+        width={width}
+        height={width / 2}
+        data={banners}
+        pagingEnabled={true}
+        autoPlay={true}
+        scrollAnimationDuration={1000}
+        onProgressChange={progress}
+        renderItem={renderItem}
+      />
+      <Pagination.Basic
+        progress={progress}
+        data={banners}
+        dotStyle={{ backgroundColor: "rgba(0,0,0,0.2)", borderRadius: 50 }}
+        containerStyle={{ gap: 5 }}
+        onPress={onPressPagination}
+      />
+    </View>
   );
 };
 
@@ -92,7 +103,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'orange',
     borderRadius: 10,
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 5,
     elevation: 5,
@@ -135,9 +146,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  paginationContainer: {
+    paddingVertical: 8,
+  },
+  paginationDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginHorizontal: 8,
+    backgroundColor: 'rgba(0, 0, 0, 0.92)',
+  },
+  inactiveDot: {
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  },
 });
 
 export default BannerSlider;
-function alert(arg0: string): void {
-  throw new Error('Function not implemented.');
-}
