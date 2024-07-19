@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Carousel from 'react-native-reanimated-carousel';
@@ -20,7 +21,7 @@ interface Banner {
   sellingPrice: number;
   parameter: number;
   reportsTime: number;
-  buttonAction: () => void;
+  buttonAction: string;
 }
 
 const CheckUpBannerSlider = (prop: {data: any}) => {
@@ -80,7 +81,11 @@ const CheckUpBannerSlider = (prop: {data: any}) => {
               </View>
             </View>
           </View>
-          <TouchableOpacity onPress={item.buttonAction} style={styles.button}>
+          <TouchableOpacity
+            onPress={() => {
+              Alert.alert(item.buttonAction);
+            }}
+            style={styles.button}>
             <Text style={styles.buttonText}>Add to Cart</Text>
           </TouchableOpacity>
         </View>
@@ -139,9 +144,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   tag: {
+    textAlign: 'center',
     fontSize: 18,
+    color: 'white',
+    backgroundColor: '#4886bd',
     fontWeight: '900',
     marginLeft: '40%',
+    padding: 5,
+    borderRadius: 15,
   },
   subtitle: {
     fontSize: 20,
@@ -168,6 +178,7 @@ const styles = StyleSheet.create({
     marginLeft: '50%',
     backgroundColor: 'orange',
     padding: 5,
+    fontWeight: 'bold',
     borderRadius: 10,
     width: 80,
   },

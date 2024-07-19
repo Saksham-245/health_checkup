@@ -7,7 +7,7 @@
     "code": "Use Code: FAMILY",
     "buttonText": "Order Now",
     "gradient": ["#D4D3DD", "#D4D3DD"],
-    "buttonAction": "() => alert('Order Now Pressed')"
+    "buttonAction": "Order Now Pressed"
   },
   {
     "id": "2",
@@ -17,6 +17,6 @@
     "code": "Use Code: DISCOUNT",
     "buttonText": "Order Now",
     "gradient": ["#DBD5A4", "#BBD2C5"],
-    "buttonAction": "() => alert('Order Now Pressed')"
+    "buttonAction": "Order Now Pressed"
   }
 ]

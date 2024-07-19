@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Carousel from 'react-native-reanimated-carousel';
@@ -20,7 +21,7 @@ interface Banner {
   code: string;
   buttonText: string;
   gradient: any;
-  buttonAction: () => void;
+  buttonAction: string;
 }
 
 const BannerSlider = (prop: {data: any}) => {
@@ -35,7 +36,11 @@ const BannerSlider = (prop: {data: any}) => {
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.subtitle}>{item.subtitle}</Text>
           <Text style={styles.code}>{item.code}</Text>
-          <TouchableOpacity onPress={item.buttonAction} style={styles.button}>
+          <TouchableOpacity
+            onPress={() => {
+              Alert.alert(item.buttonAction);
+            }}
+            style={styles.button}>
             <Text style={styles.buttonText}>{item.buttonText}</Text>
           </TouchableOpacity>
         </View>

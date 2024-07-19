@@ -1,10 +1,13 @@
 import React from 'react';
 import {Image, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import UnderConstruction from '../Components/UnderConstruction';
 
 const Profile = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}></ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <UnderConstruction />
+      </ScrollView>
     </SafeAreaView>
   );
 };

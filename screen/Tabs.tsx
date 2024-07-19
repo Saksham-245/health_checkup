@@ -14,10 +14,14 @@ const Tabs = () => {
     <Tab.Navigator
       screenOptions={({route}) => ({
         headerShown: false,
+        tabBarLabelStyle: {
+          marginBottom: 15,
+        },
         tabBarStyle: {
           borderTopLeftRadius: 30, // adjust the radius as needed
           borderTopRightRadius: 30,
-          height: 50,
+          height: 70,
+          paddingTop: 12,
           overflow: 'hidden',
 
           // backgroundColor: "white", // or any other background color

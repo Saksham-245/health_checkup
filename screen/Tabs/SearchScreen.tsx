@@ -1,12 +1,13 @@
 import React from 'react';
 import {Image, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import {Text} from 'react-native-paper';
+import UnderConstruction from '../Components/UnderConstruction';
 
 const SearchScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <Text>Search</Text>
+        <UnderConstruction />
       </ScrollView>
     </SafeAreaView>
   );

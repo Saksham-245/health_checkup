@@ -1,7 +1,12 @@
 import React from 'react';
-import {Image, SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import {Text, SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import LocationButton from '../Components/LocationButton';
 import SearchBar from '../Components/SearchBar';
+import LinearGradient from 'react-native-linear-gradient';
+import LottieView from 'lottie-react-native';
+import json from '../../assets/images/underConstruction.json';
+import {Icon} from 'react-native-vector-icons/Icon';
+import UnderConstruction from '../Components/UnderConstruction';
 
 const Test = () => {
   return (
@@ -11,6 +16,7 @@ const Test = () => {
           <LocationButton />
           <SearchBar />
         </View>
+        <UnderConstruction />
       </ScrollView>
     </SafeAreaView>
   );

@@ -6,7 +6,7 @@
     "sellingPrice": 1600,
     "parameter": 91,
     "reportsTime": "6",
-    "buttonAction": "() => alert('Order Now Pressed')"
+    "buttonAction": "Order Now Pressed"
   },
   {
     "id": "2",
@@ -15,7 +15,7 @@
     "sellingPrice": 2600,
     "parameter": 101,
     "reportsTime": "6",
-    "buttonAction": "() => alert('Order Now Pressed')"
+    "buttonAction": "Order Now Pressed"
   },
   {
     "id": "3",
@@ -24,7 +24,7 @@
     "sellingPrice": 3500,
     "parameter": 107,
     "reportsTime": "6",
-    "buttonAction": "() => alert('Order Now Pressed')"
+    "buttonAction": "Order Now Pressed"
   },
   {
     "id": "4",
@@ -32,8 +32,8 @@
     "markedPrice": 2600,
     "sellingPrice": 1100,
     "parameter": 79,
-    "reportsTime": "2day",
-    "buttonAction": "() => alert('Order Now Pressed')"
+    "reportsTime": "6",
+    "buttonAction": "Order Now Pressed"
   },
   {
     "id": "5",
@@ -41,7 +41,7 @@
     "markedPrice": 13000,
     "sellingPrice": 3500,
     "parameter": 107,
-    "reportsTime": "1day",
-    "buttonAction": "() => alert('Order Now Pressed')"
+    "reportsTime": "12",
+    "buttonAction": "Order Now Pressed"
   }
 ]
