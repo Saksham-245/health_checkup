@@ -25,8 +25,7 @@ interface Banner {
   gradient: any;
   buttonAction: () => void;
 }
-
-const BannerSlider = (prop: any) => {
+const BannerSlider = (prop: {data: any}) => {
   const banners = prop.data;
   const ref = React.useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);

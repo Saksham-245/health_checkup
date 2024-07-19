@@ -114,6 +114,10 @@ const CheckUpBannerSlider = (prop: {data: any}) => {
         scrollAnimationDuration={1000}
         onProgressChange={progress}
         renderItem={renderItem}
+        panGestureHandlerProps={{
+          activeOffsetX: [-10, 10], // Adjust these values as needed
+          failOffsetY: [-10, 10],
+        }}
       />
       <Pagination.Basic
         progress={progress}
