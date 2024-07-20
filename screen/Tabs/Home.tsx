@@ -31,6 +31,7 @@ const Home = () => {
         <InfoBanner />
         <BannerSlider data={homeBannerData} />
         <CheckUpBannerSlider data={CheckUpBannerData} />
+        <CheckUpBannerSlider data={CheckUpBannerData} />
       </ScrollView>
     </SafeAreaView>
   );
