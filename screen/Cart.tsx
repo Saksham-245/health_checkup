@@ -6,7 +6,7 @@ export default function Cart({ navigation }: any) {
     const route = useRoute();
     let { selectedItems } = route.params;
 
-    const [fullName, setFullName] = useState('Saksham Mathur');
+    const [fullName, setFullName] = useState('Alex');
     const [age, setAge] = useState('25');
     const [gender, setGender] = useState('Male');
 

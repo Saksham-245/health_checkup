@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   View,
   Image,
@@ -6,6 +6,7 @@ import {
   ScrollView,
   Text,
   StyleSheet,
+  Dimensions,
 } from 'react-native';
 import LocationButton from '../Components/LocationButton';
 import SearchBar from '../Components/SearchBar';
@@ -14,12 +15,24 @@ import BannerSlider from '../Components/HomeBannerSlider';
 import homeBannerData from '../../json/homeBannerSlider.json';
 import CheckUpBannerSlider from '../Components/CheckUpBannerSlider';
 import CheckUpBannerData from '../../json/checkupBannerSlider.json';
-import LinearGradient from 'react-native-linear-gradient';
+import BottomSheet from '@gorhom/bottom-sheet';
 
 const Home = () => {
+  const bottomSheetRef = useRef<BottomSheet>(null);
+
+  useEffect(() => {
+    if (CheckUpBannerData.length > 0) {
+      bottomSheetRef.current?.expand();
+    } else {
+      bottomSheetRef.current?.close();
+
+    }
+  }, [CheckUpBannerData]);
+
+
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <ScrollView contentContainerStyle={[styles.scrollViewContent, {paddingBottom: Dimensions.get('window').height * 0.1}]}>
         <View style={styles.homeBox}>
           <LocationButton />
           <Image
@@ -30,7 +43,7 @@ const Home = () => {
         </View>
         <InfoBanner />
         <BannerSlider data={homeBannerData} />
-        <CheckUpBannerSlider data={CheckUpBannerData} />
+        <CheckUpBannerSlider data={CheckUpBannerData} bottomSheetRef={bottomSheetRef} />
       </ScrollView>
     </SafeAreaView>
   );

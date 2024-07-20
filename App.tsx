@@ -9,6 +9,7 @@ import {PaperProvider} from 'react-native-paper';
 import Home from './screen/Tabs/Home';
 import Tabs from './screen/Tabs';
 import SearchScreen from './screen/Tabs/SearchScreen';
+import Cart from './screen/Cart';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ export default function App() {
                   headerTitle: 'Search',
                 }}
               />
+              <Stack.Screen name="Cart" component={Cart} />
             </Stack.Navigator>
           </NavigationContainer>
         </GestureHandlerRootView>
