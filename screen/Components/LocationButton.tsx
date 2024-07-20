@@ -42,6 +42,7 @@ const LocationButton = () => {
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
             <Text style={styles.modalTitle}>Select City</Text>
+
             <FlatList
               data={locations}
               keyExtractor={item => item}
@@ -49,7 +50,19 @@ const LocationButton = () => {
                 <TouchableOpacity
                   style={styles.modalItem}
                   onPress={() => handleLocationSelect(item)}>
-                  <Text style={styles.modalItemText}>{item}</Text>
+                  <Text
+                    style={[
+                      styles.modalItemText,
+                      item == selectedLocation
+                        ? {
+                            color: 'blue',
+                            fontWeight: 'bold',
+                            fontSize: 18,
+                          }
+                        : {fontSize: 15},
+                    ]}>
+                    {item}
+                  </Text>
                 </TouchableOpacity>
               )}
             />
@@ -83,6 +96,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginRight: 4,
+    color: 'grey',
   },
   modalContainer: {
     flex: 1,
@@ -116,6 +130,8 @@ const styles = StyleSheet.create({
   },
   modalItemText: {
     fontSize: 16,
+    color: 'grey',
+    textAlign: 'center',
   },
   closeButton: {
     marginTop: 20,

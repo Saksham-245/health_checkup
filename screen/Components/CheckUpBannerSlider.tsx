@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,12 @@ import {
   Alert,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import Carousel from 'react-native-reanimated-carousel';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -26,6 +32,7 @@ interface Banner {
 
 const CheckUpBannerSlider = (prop: {data: any}) => {
   const banners = prop.data;
+  const [currentIndex, setCurrentIndex] = useState(0);
   const renderItem = ({item}: {item: Banner}) => (
     <View>
       <View style={styles.slide}>
@@ -65,16 +72,16 @@ const CheckUpBannerSlider = (prop: {data: any}) => {
                 <Text style={{fontWeight: 'bold', color: 'black'}}>
                   {item.parameter + ' parameters'}
                 </Text>
-                <Text>Included</Text>
+                <Text style={{color: 'grey'}}>Included</Text>
               </View>
             </View>
             <View style={{flexDirection: 'row', paddingHorizontal: 15}}>
               <FontAwesome5
-                style={{padding: 5}}
+                style={{padding: 5, color: 'grey'}}
                 name="file-medical-alt"
                 size={30}></FontAwesome5>
               <View>
-                <Text>Reports within</Text>
+                <Text style={{color: 'grey'}}>Reports within</Text>
                 <Text style={{fontWeight: 'bold', color: 'black'}}>
                   {item.reportsTime + ' Hours'}
                 </Text>
@@ -94,24 +101,68 @@ const CheckUpBannerSlider = (prop: {data: any}) => {
   );
 
   return (
-    <Carousel
-      loop
-      width={width}
-      mode="parallax"
-      height={width / 1.5}
-      //   autoPlay={true}
-      //   autoPlayInterval={2000}
-      data={banners}
-      //   scrollAnimationDuration={1000}
-      renderItem={renderItem}
-      panGestureHandlerProps={{
-        activeOffsetX: [-10, 10], // Adjust these values as needed
-        failOffsetY: [-10, 10],
-      }}
-    />
+    <View>
+      <Carousel
+        width={width}
+        mode="parallax"
+        height={width / 1.7}
+        onSnapToItem={index => setCurrentIndex(index)}
+        //   autoPlay={true}
+        //   autoPlayInterval={2000}
+        data={banners}
+        //   scrollAnimationDuration={1000}
+        renderItem={renderItem}
+        panGestureHandlerProps={{
+          activeOffsetX: [-10, 10], // Adjust these values as needed
+          failOffsetY: [-10, 10],
+        }}
+      />
+      <Pagination data={banners} currentIndex={currentIndex} />
+    </View>
   );
 };
+const Pagination = ({data, currentIndex}) => {
+  return (
+    <View style={styles.paginationContainer}>
+      {data.map((_, index) => (
+        <PaginationDot key={index} active={index === currentIndex} />
+      ))}
+    </View>
+  );
+};
+const PaginationDot = ({active}) => {
+  const animatedScale = useSharedValue(1);
+  const animatedOpacity = useSharedValue(0.5);
 
+  if (active) {
+    animatedScale.value = withTiming(1.5, {
+      duration: 1, // Reduced duration for quicker animation
+      easing: Easing.out(Easing.exp),
+    });
+    animatedOpacity.value = withTiming(1, {
+      duration: 1, // Reduced duration for quicker animation
+      easing: Easing.out(Easing.exp),
+    });
+  } else {
+    animatedScale.value = withTiming(1, {
+      duration: 1, // Reduced duration for quicker animation
+      easing: Easing.out(Easing.exp),
+    });
+    animatedOpacity.value = withTiming(0.5, {
+      duration: 1, // Reduced duration for quicker animation
+      easing: Easing.out(Easing.exp),
+    });
+  }
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{scale: animatedScale.value}],
+      opacity: animatedOpacity.value,
+    };
+  });
+
+  return <Animated.View style={[styles.paginationDot, animatedStyle]} />;
+};
 const styles = StyleSheet.create({
   slide: {
     display: 'flex',
@@ -200,6 +251,18 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  paginationContainer: {
+    flexDirection: 'row',
+    // marginTop: 20,
+    justifyContent: 'center',
+  },
+  paginationDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: 'gray',
+    marginHorizontal: 5,
   },
 });
 

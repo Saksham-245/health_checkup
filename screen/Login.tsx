@@ -17,21 +17,22 @@ import {
   getCountryByCode,
   PhoneNumberInput,
 } from 'react-native-paper-phone-number-input';
+import {useNavigation} from '@react-navigation/native';
 
 const {width, height} = Dimensions.get('window');
 
 const slides = [
   {
     key: 1,
-    title: 'Title 1',
-    text: 'Description.\nSay something cool',
+    title: 'Get sample collected from Home ',
+    text: 'Book at your convenience',
     image: require('../assets/images/test.jpg'),
     backgroundColor: '#59b2ab',
   },
   {
     key: 2,
-    title: 'Title 2',
-    text: 'Other cool stuff',
+    title: 'Certified Lab',
+    text: 'Report in 6 - 8 hours',
     image: require('../assets/images/lab.jpg'),
     backgroundColor: '#febe29',
   },
@@ -56,6 +57,10 @@ export default function Login() {
   const [otp, setOtp] = useState(['', '', '', '']);
   const [countryCode, setCountryCode] = useState<string>('IN'); // Default country code
   const {name, flag, dialCode} = getCountryByCode(countryCode); // Get country details
+  const navigation = useNavigation();
+  // const otpVerified=()={
+  //   navigation.replace('tabs');
+  // }
 
   // callbacks
   const handleSheetChanges = useCallback((index: number) => {
@@ -115,7 +120,12 @@ export default function Login() {
                   />
                 ))}
               </View>
-              <Button mode="contained" style={{marginTop: 30}}>
+              <Button
+                mode="contained"
+                onPress={() => {
+                  navigation.navigate('tabs');
+                }}
+                style={{marginTop: 30}}>
                 Verify OTP
               </Button>
             </>
@@ -133,20 +143,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    position: 'absolute',
+    // position: 'absolute',
     color: 'white',
-    fontSize: 24,
-    top: '10%',
+    fontSize: 34,
+    fontWeight: 'bold',
+    // backgroundColor: 'black',
+    // top: '10%',
     textAlign: 'center',
     width: '100%',
   },
   view: {
-    width: '50%',
+    width: '90%',
+    backgroundColor: 'black',
+    opacity: 0.65,
+    padding: 20,
+    borderRadius: 20,
   },
   text: {
-    position: 'absolute',
+    // position: 'absolute',
     color: 'white',
-    fontSize: 20,
+    fontSize: 25,
+    marginTop: 20,
+    // backgroundColor: 'black',
     bottom: '10%',
     textAlign: 'center',
   },
